@@ -14,15 +14,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action ="/EmplReimb/Create" method="POST">
+        
+        <form #reimbForm="ngForm" (ngSubmit)="onSubmit()">
+
+          {{ reimbForm.value | json }}
+          <hr />
+          {{ newReimbModel | json }}
+
           <div class="form-group">
-            <label for="exampleFormControlInput1">Amount</label>
-            <input name="amount" type="number" min="1" class="form-control" id="exampleFormControlInput1" placeholder="$0.00">
+            <label for="amount">Amount</label>
+            <input name="amount" type="number" min="1" class="form-control" id="amount" placeholder="$0.00" [(ngModel)] = "newReimbModel.amount">
           </div>
       
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Type</label>
-            <select name="type" class="form-control" id="exampleFormControlSelect1">
+            <label for="type">Type</label>
+            <select name="type" class="form-control" id="type" [(ngModel)] = "newReimbModel.type">
               <option>Lodging</option>
               <option>Travel</option>
               <option>Food</option>
@@ -31,24 +37,22 @@
           </div>
       
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" id="description" rows="3" [(ngModel)] = "newReimbModel.description"></textarea>
           </div>
       
           <div class="form-group">
-              <label for="exampleFormControlFile1">Upload Receipt</label>
-              <input name="receipt" type="file" class="form-control-file" id="exampleFormControlFile1">
+              <label for="receipt">Upload Receipt</label>
+              <input name="receipt" type="file" class="form-control-file" id="receipt" [(ngModel)] = "newReimbModel.receipt">
           </div>
 
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary" >Submit Reimbursement</button>
             <!-- data-dismiss="modal" -->
           </div>
-      
-          
         </form>
-      </div>
-      
+
+      </div> 
     </div>
   </div>
 </div>
