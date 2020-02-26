@@ -11,7 +11,7 @@ import { CreateService } from '../../services/create.service';
 
 export class ReimbFormComponent{
 
-  newReimbModel = new NewReimb(0, "", "", "")
+  newReimbModel = new NewReimb(0, 0, "", "")
   constructor(private _ceateService: CreateService){}
 
 
