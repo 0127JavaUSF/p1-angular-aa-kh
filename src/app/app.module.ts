@@ -14,11 +14,11 @@ import { ReimbSumComponent } from './components/reimb-sum/reimb-sum.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     ReimbFormComponent,
     HeaderComponent,
     TableComponent,
-    ReimbSumComponent
+    ReimbSumComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
