@@ -12,7 +12,7 @@ export class EmployeeService {
   _url = 'http://localhost:8080/EmplReimb/SessionServlet';
   constructor(private _http: HttpClient) { }
   
-  getCurrentUser(): any {
+  getCurrentUser(): any { 
     return this.currentUser;
   }
 
