@@ -15,12 +15,12 @@ import { AdminFormComponent } from './components/admin-form/admin-form.component
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     ReimbFormComponent,
     HeaderComponent,
     TableComponent,
     ReimbSumComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
