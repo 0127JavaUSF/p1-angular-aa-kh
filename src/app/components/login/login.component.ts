@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/classes/employee/employee';
-import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { Employee } from '../../classes/employee/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,9 @@ import { EmployeeService } from 'src/app/services/employee/employee.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _employeeService: EmployeeService) {}
+  flag: boolean;
+
+  constructor(private _employeeService: EmployeeService) { }
 
   employee = new Employee("", "");
 
@@ -22,12 +24,25 @@ export class LoginComponent implements OnInit {
 
     this._employeeService.create(this.employee)
       .subscribe(
-        data => this._employeeService.setCurrentUser(data),
+        data => {
+          this._employeeService.setCurrentUser(data);
+          if (this._employeeService.getCurrentUser()) {
+            this.flag = true;
+          }
+        },
         error => console.error('Error!', error)
       )
-    
+
     console.log(this._employeeService.getCurrentUser);
 
+  }
+
+  onLogout() {
+    this._employeeService.destroy()
+      .subscribe(
+        () => console.log("Logged out."),
+        error => console.log('Error!', error)
+      )
   }
 
 }
