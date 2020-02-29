@@ -7,18 +7,37 @@ import { Employee } from "../../classes/employee/employee";
 })
 export class EmployeeService {
 
-  public currentUser: any;
-
+  public currentUser = {
+    username: "",
+    password: "",
+    sessionToken: "",
+  }
+  
   _url = 'http://localhost:8080/EmplReimb/SessionServlet';
   constructor(private _http: HttpClient) { }
-  
-  getCurrentUser(): any { 
+
+  getCurrentUser(): any {
     return this.currentUser;
   }
 
   setCurrentUser(user: any) {
-    this.currentUser = user;
-    console.log(this.currentUser.username);
+    if(user === false) {
+      this.currentUser.username = "";
+      this.currentUser.password = "";
+      this.currentUser.sessionToken = "";
+    } else {
+      this.currentUser.username = user.username;
+      this.currentUser.password = user.password;
+      this.currentUser.sessionToken = user.sessionToken;
+    }
+  }
+
+  isLoggedIn(): boolean {
+    if (this.getCurrentUser().username.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   create(employee: Employee) {
@@ -27,6 +46,13 @@ export class EmployeeService {
       username: employee.username,
       password: employee.password
     });
+  }
+
+  logout(): any {
+    if (this.getCurrentUser) {
+      console.log("Logging out the current user...");
+      return this._http.delete<any>(this._url, {});
+    }
   }
 
 }
