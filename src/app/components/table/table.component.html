@@ -12,15 +12,13 @@
     
     <tbody>
       <tr *ngFor = "let reimb of userReimbs">
-        <th scope="row" data-toggle="modal" data-target="#exampleModalCenter">{{ reimb.reimbID }}</th>
+        <th scope="row" data-toggle="modal" data-target="#summary">{{ reimb.reimbID }}</th>
         <td>{{ reimb.typeID }}</td>
         <td>${{ reimb.amount }}</td>
         <td>{{ reimb.statusID }}</td>
         <td>{{ reimb.submitted | date:'shortDate' }}</td>
-      </tr>
-
         <!-- Modal -->
-        <div *ngFor = "let reimb of userReimbs" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div *ngFor = "let reimb of userReimbs" class="modal fade" id="summary" tabindex="-1" role="dialog" aria-labelledby="summary" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -38,10 +36,14 @@
                 <p>Date Resolved: {{ reimb.resolved | date:'shortDate' }}</p>
                 <p>Description: {{ reimb.description }}</p>
                 <p>Receipt: {{ reimb.receipt }}</p>
+                <app-admin-form></app-admin-form>
               </div>
             </div>
           </div>
         </div>
+      </tr>
+
+        
        
 
     </tbody>
