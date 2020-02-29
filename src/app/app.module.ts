@@ -10,6 +10,7 @@ import { ReimbFormComponent } from './components/reimb-form/reimb-form.component
 import { HeaderComponent } from './components/header/header.component';
 import { TableComponent } from './components/table/table.component';
 import { ReimbSumComponent } from './components/reimb-sum/reimb-sum.component';
+import { AdminFormComponent } from './components/admin-form/admin-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReimbSumComponent } from './components/reimb-sum/reimb-sum.component';
     ReimbFormComponent,
     HeaderComponent,
     TableComponent,
-    ReimbSumComponent
+    ReimbSumComponent,
+    AdminFormComponent
   ],
   imports: [
     BrowserModule,
