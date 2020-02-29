@@ -12,35 +12,11 @@
     
     <tbody>
       <tr *ngFor = "let reimb of userReimbs">
-        <th scope="row" data-toggle="modal" data-target="#summary">{{ reimb.reimbID }}</th>
+        <th scope="row"><a routerLink="/summary">{{ reimb.reimbID }}</a></th>
         <td>{{ reimb.typeID }}</td>
         <td>${{ reimb.amount }}</td>
         <td>{{ reimb.statusID }}</td>
         <td>{{ reimb.submitted | date:'shortDate' }}</td>
-        <!-- Modal -->
-        <div *ngFor = "let reimb of userReimbs" class="modal fade" id="summary" tabindex="-1" role="dialog" aria-labelledby="summary" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Reimbursement Summary</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Reimbursement ID: {{ reimb.reimbID }}</p>
-                <p>Status: {{ reimb.statusID }}</p>
-                <p>Type: {{ reimb.typeID }}</p>
-                <p>Amount: ${{ reimb.amount }}</p>
-                <p>Date Submitted: {{ reimb.submitted | date:'shortDate' }}</p>
-                <p>Date Resolved: {{ reimb.resolved | date:'shortDate' }}</p>
-                <p>Description: {{ reimb.description }}</p>
-                <p>Receipt: {{ reimb.receipt }}</p>
-                <app-admin-form></app-admin-form>
-              </div>
-            </div>
-          </div>
-        </div>
       </tr>
 
         
@@ -48,4 +24,3 @@
 
     </tbody>
   </table>
-

@@ -3,29 +3,34 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { ReimbFormComponent } from './components/reimb-form/reimb-form.component';
 import { HeaderComponent } from './components/header/header.component';
-import { TableComponent } from './components/table/table.component';
-import { ReimbSumComponent } from './components/reimb-sum/reimb-sum.component';
 import { AdminFormComponent } from './components/admin-form/admin-form.component';
+import { StatusPipe } from './pipes/status/status.pipe';
+import { TypePipe } from './pipes/type/type.pipe';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ReimbFormComponent,
     HeaderComponent,
-    TableComponent,
-    ReimbSumComponent,
     AdminFormComponent,
-    LoginComponent
+    StatusPipe,
+    TypePipe,
+    routingComponents
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
