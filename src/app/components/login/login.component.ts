@@ -25,6 +25,10 @@ export class LoginComponent implements OnInit {
               if (this._employeeService.getCurrentUser()) {
                 console.log(this._employeeService.getCurrentUser().username + " has logged in.");
                 console.log("Token assigned: " + this._employeeService.getCurrentUser().sessionToken);
+                console.log("Email: " + this._employeeService.getCurrentUser().email);
+                console.log("Username: " + this._employeeService.getCurrentUser().username);
+                console.log("FirstName: " + this._employeeService.getCurrentUser().firstName);
+
               }
             },
             error => console.error('Error!', error)
