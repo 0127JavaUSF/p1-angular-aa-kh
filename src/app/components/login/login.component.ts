@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../classes/employee/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _employeeService: EmployeeService) { }
+  constructor(private _employeeService: EmployeeService, private router: Router) { }
 
   employee = new Employee("", "");
 
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
             data => {
               this._employeeService.setCurrentUser(data);
               if (this._employeeService.getCurrentUser()) {
+                console.log("ID: " + this._employeeService.getCurrentUser().userId);
                 console.log(this._employeeService.getCurrentUser().username + " has logged in.");
                 console.log("Token assigned: " + this._employeeService.getCurrentUser().sessionToken);
                 console.log("Email: " + this._employeeService.getCurrentUser().email);
@@ -30,6 +33,8 @@ export class LoginComponent implements OnInit {
                 console.log("FirstName: " + this._employeeService.getCurrentUser().firstName);
 
               }
+              // this.location.replaceState('/home');
+              this.router.navigateByUrl('/home' );
             },
             error => console.error('Error!', error)
           )
