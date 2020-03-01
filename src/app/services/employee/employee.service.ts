@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from "../../classes/employee/employee";
+import { EmployeeI } from './employeeObj';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  public currentUser = {
+  public currentUser: EmployeeI = {
+    userId: 0,
     username: "",
-    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    roleId: 0,
     sessionToken: "",
   }
   
@@ -20,14 +25,26 @@ export class EmployeeService {
     return this.currentUser;
   }
 
+  resetCurrentUserFields() {
+    this.currentUser.userId = 0;
+    this.currentUser.username = "";
+    this.currentUser.firstName = "";
+    this.currentUser.lastName = "";
+    this.currentUser.email = "";
+    this.currentUser.roleId = 0;
+    this.currentUser.sessionToken = "";
+  }
+
   setCurrentUser(user: any) {
     if(user === false) {
-      this.currentUser.username = "";
-      this.currentUser.password = "";
-      this.currentUser.sessionToken = "";
+      this.resetCurrentUserFields();
     } else {
+      this.currentUser.userId = user.userId;
       this.currentUser.username = user.username;
-      this.currentUser.password = user.password;
+      this.currentUser.firstName = user.firstName;
+      this.currentUser.lastName = user.lastName;
+      this.currentUser.email = user.email;
+      this.currentUser.roleId = user.roleId;
       this.currentUser.sessionToken = user.sessionToken;
     }
   }
