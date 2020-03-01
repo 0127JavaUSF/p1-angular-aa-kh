@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { EmployeeService } from '../../services/employee/employee.service'
+import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 
 @Component({
   selector: 'app-table',
@@ -8,10 +10,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private httpService: HttpClient) { }
+  constructor( private httpService: HttpClient,private _employeeService: EmployeeService) { }
   
   userReimbs: string [];
-  _url = 'http://localhost:8080/EmplReimb/admin-display';
+  
+  _url = 'http://localhost:8080/EmplReimb/admin';
   
   ngOnInit(): void {
     this.httpService.get(this._url).subscribe(
