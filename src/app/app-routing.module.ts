@@ -5,7 +5,7 @@ import { TableComponent } from './components/table/table.component';
 import { ReimbSumComponent } from './components/reimb-sum/reimb-sum.component';
 
 const routes: Routes = [
-    { path: 'login', component: LoginComponent},
+    { path: '', component: LoginComponent},
     { path: 'home', component: TableComponent},
     { path: 'summary', component: ReimbSumComponent}
 ];

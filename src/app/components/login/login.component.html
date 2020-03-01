@@ -9,7 +9,8 @@
     <input name="password" type="password" class="form-control" id="exampleInputPassword1"
       [(ngModel)]="employee.password">
   </div>
-
+<!-- check with ngIF if currentUser is truthy. If so, then route to somewhere else -->
+<!-- route thingy will be activated IF currentUser is truthy -->
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
 <form #reimbForm="ngForm" (ngSubmit)="onLogout()">
