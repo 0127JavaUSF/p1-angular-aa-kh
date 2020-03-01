@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  +Reimbursement Request
+<button type="button" class="btn btn-primary reimbForm" data-toggle="modal" data-target="#exampleModalCenter">
+  + Reimbursement Request
 </button>
 
 <!-- Modal -->
@@ -16,11 +16,6 @@
       <div class="modal-body">
         
         <form #reimbForm="ngForm" (ngSubmit)="onSubmit()">
-
-          {{ reimbForm.value | json }}
-          <hr />
-          {{ newReimbModel | json }}
-
           <div class="form-group">
             <label for="amount">Amount</label>
             <input name="amount" type="number" min="1" class="form-control" id="amount" placeholder="$0.00" [(ngModel)] = "newReimbModel.amount">
@@ -47,8 +42,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" >Submit Reimbursement</button>
-            <!-- data-dismiss="modal" -->
+            <button type="submit" class="btn btn-primary">Submit Reimbursement</button>
           </div>
         </form>
 

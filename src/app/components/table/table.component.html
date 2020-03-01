@@ -1,5 +1,8 @@
-<h1>Reimbursements</h1>
-<table class="table col-10">
+<div class="container col-11">
+  <h2 class = "title">Reimbursements</h2>
+  <app-reimb-form></app-reimb-form>
+</div>
+  <table class="table col-11 ">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Reimbursement ID</th>
@@ -7,20 +10,27 @@
         <th scope="col">Amount</th>
         <th scope="col">Status</th>
         <th scope="col">Submitted</th>
+        <th scope="col">Resolved</th>
+        <th scope="col">Description</th>
+        <th scope="col">Receipt</th>
       </tr>
     </thead>
     
     <tbody>
       <tr *ngFor = "let reimb of userReimbs">
-        <th scope="row"><a routerLink="/summary">{{ reimb.reimbID }}</a></th>
-        <td>{{ reimb.typeID }}</td>
-        <td>${{ reimb.amount }}</td>
-        <td>{{ reimb.statusID }}</td>
+        <th scope="row">{{ reimb.reimbID }}</th>
+        <td>{{ reimb.typeID | type }}</td>
+        <td>{{ reimb.amount | currency }}</td>
+        <td class="status">{{ reimb.statusID | status }}</td>
         <td>{{ reimb.submitted | date:'shortDate' }}</td>
+        <td>{{ reimb.resolved | date:'shortDate' }}</td>
+        <td>{{ reimb.description }}</td>
+        <td><button type="button" class="btn btn-primary btn-sm">View Reciept</button></td>
       </tr>
 
-        
-       
-
+      
     </tbody>
   </table>
+
+
+ 
