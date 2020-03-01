@@ -10,14 +10,13 @@ import { EmployeeService } from '../../services/employee/employee.service';
 })
 
 export class ReimbFormComponent{
-
   
-  constructor(private _ceateService: CreateService, private employeeService: EmployeeService){}
+  constructor(private _createService: CreateService, private employeeService: EmployeeService){}
 
   newReimbModel = new NewReimb(this.employeeService.getCurrentUser().userId, 0, 0, "", "")
 
   onSubmit(){
-    this._ceateService.create(this.newReimbModel)
+    this._createService.create(this.newReimbModel)
       .subscribe(
         data => console.log('Success!', data),
         error => console.error('Error!', error)

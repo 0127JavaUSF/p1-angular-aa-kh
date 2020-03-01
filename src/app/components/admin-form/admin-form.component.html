@@ -1,13 +1,15 @@
-<form >
-
-    <div class="form-group">
-      <label for="type">Status</label>
-      <select name="typeID" class="form-control" id="status">
-        <option value="" disabled selected hidden>Status</option>
-        <option value="2">Approve</option>
-        <option value="3">Deny</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary" >Submit Status</button>
-
+<form #adminForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="statusID" id="approve" value="2" checked [(ngModel)]=updateModel.statusID >
+    <label class="form-check-label" for="approve">
+      Approve
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="statusID" id="deny" value="3" [(ngModel)]=updateModel.statusID>
+    <label class="form-check-label" for="deny">
+      Deny
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary btn-sm">Update</button>
 </form>
