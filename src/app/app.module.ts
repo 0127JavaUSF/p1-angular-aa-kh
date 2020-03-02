@@ -8,19 +8,14 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReimbFormComponent } from './components/reimb-form/reimb-form.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AdminFormComponent } from './components/admin-form/admin-form.component';
 import { StatusPipe } from './pipes/status/status.pipe';
 import { TypePipe } from './pipes/type/type.pipe';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     ReimbFormComponent,
     HeaderComponent,
-    AdminFormComponent,
     StatusPipe,
     TypePipe,
     routingComponents
@@ -30,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

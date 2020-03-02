@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+<<<<<<< HEAD
+import { Update } from 'src/app/classes/reimb-update';
+import { UpdateService } from 'src/app/services/update/update.service';
+import { SessionService } from '../../services/employee/session.service';
+=======
 import { SessionService } from '../../services/session/session.service'
 import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
+>>>>>>> 6ac46401d4b12f4ad2e5ed595be53564deb7232a
 
 @Component({
   selector: 'app-table',
@@ -10,15 +16,19 @@ import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private httpService: HttpClient,private sessionService: SessionService) { }
+  constructor( private hostElement: ElementRef, private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { 
+    console.log("this is: " + this.hostElement.nativeElement.outerHTML);
+  }
   
   userId: number;
   roleId: number;
 
   userReimbs: string [];
-  
+  updateModel = new Update(0, this.sessionService.getCurrentUser().userId, 1);
   _url;
-  
+
+ 
+
   ngOnInit(): void {
 
     this.sessionService.fetchCurrentUser();
