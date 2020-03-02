@@ -58,4 +58,6 @@ export class TableComponent implements OnInit {
       );
     this.ngOnInit();
   }
+
+  
 }
