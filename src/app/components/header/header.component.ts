@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../../services/employee/employee.service';
+import { SessionService } from '../../services/employee/session.service';
 
 @Component({
   selector: 'app-header',
@@ -8,19 +8,19 @@ import { EmployeeService } from '../../services/employee/employee.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private _employeeService: EmployeeService,) { }
+  constructor(private _sessionService: SessionService,) { }
 
   ngOnInit(): void {
   }
 
   onLogout() {
-    if (this._employeeService.isLoggedIn()) {
-      this._employeeService.logout()
+    if (this._sessionService.isLoggedIn()) {
+      this._sessionService.logout()
         .subscribe(
           () => {
-            console.log("Logging out " + this._employeeService.getCurrentUser().username);
-            console.log("Removed token: " + this._employeeService.getCurrentUser().sessionToken);
-            this._employeeService.setCurrentUser(false);
+            console.log("Logging out " + this._sessionService.getCurrentUser().username);
+            console.log("Removed token: " + this._sessionService.getCurrentUser().sessionToken);
+            this._sessionService.setCurrentUser(false);
           },
           error => console.log('******Error!', error)
         )
