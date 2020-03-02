@@ -7,3 +7,15 @@ h1{
     padding-left: 15px;
     color: #fff;
 }
+
+.header-container > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0px 15px 0px 15px;
+    align-items: center;
+}
+
+.logoutFormContainer{
+    margin-right: 15px;
+}

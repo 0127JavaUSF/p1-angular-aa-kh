@@ -1,7 +1,13 @@
-<header>
-    <h1>PayWaye.</h1>
-</header>
-
-<form #reimbForm="ngForm" (ngSubmit)="onLogout()">
-    <button type="submit" class="btn btn-primary">Logout</button>
-</form>
+<div class="header-container">
+    
+    <header>
+        <h1>PayWaye.</h1>
+        <div class="logoutFormContainer" *ngIf="this._sessionService.isLoggedIn()">
+            <form #reimbForm="ngForm" (ngSubmit)="onLogout()">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </div>
+    </header>
+    
+ 
+</div>

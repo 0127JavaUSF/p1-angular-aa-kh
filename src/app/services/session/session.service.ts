@@ -5,6 +5,7 @@ import { Employee } from "../../classes/employee/employee";
 @Injectable({
   providedIn: 'root'
 })
+
 export class SessionService {
 
   url = 'http://localhost:8080/EmplReimb/SessionServlet';
@@ -74,6 +75,13 @@ export class SessionService {
       console.log("Logging out the current user...");
       return this.http.delete<any>(this.url, {});
     }
+  }
+
+  fetchCurrentUser(): any {
+    this.http.get<any>(this.url).subscribe(
+      data => this.setCurrentUser(data),
+      error => console.log("Can not fetch current user.")
+    )
   }
 
 }

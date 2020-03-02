@@ -1,8 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+<<<<<<< HEAD
 import { Update } from 'src/app/classes/reimb-update';
 import { UpdateService } from 'src/app/services/update/update.service';
 import { SessionService } from '../../services/employee/session.service';
+=======
+import { SessionService } from '../../services/session/session.service'
+import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
+>>>>>>> 6ac46401d4b12f4ad2e5ed595be53564deb7232a
 
 @Component({
   selector: 'app-table',
@@ -25,37 +30,30 @@ export class TableComponent implements OnInit {
  
 
   ngOnInit(): void {
-    // when refresh, you lose currentUser because it's a new instance of service class.
-    // Solution: Use cookies that will store userId
-    this.userId = this.sessionService.getCurrentUser().userId;
-    this.roleId = this.sessionService.getCurrentUser().roleId;
-    console.log(this.userId);
-    console.log(this.roleId);
 
-    if(this.roleId == 1){
-      this._url = "http://localhost:8080/EmplReimb/admin";
-    }
-
-    if(this.roleId == 2){
-      this._url = "http://localhost:8080/EmplReimb/display/" + this.userId;
-    }
-    
-    this.httpService.get(this._url).subscribe(
-      data => {
-        this.userReimbs = data as string [];
-      }
-    );
-  }
+    this.sessionService.fetchCurrentUser();
   
-  onSubmit(){
-    this.updateService.update(this.updateModel)
-      .subscribe(
-        data => console.log('Success!', data),
-        error => console.log('Error!', error)
-      )
-      console.log(this.updateModel);
-      console.log(this.userReimbs[0]);
-      // console.log(this.userReimbs[0].split(" ")[1]);
-  }
+    setTimeout(() => {   
+      // when refresh, you lose currentUser because it's a new instance of service class.
+      // Solution: Use cookies that will store userId
+      this.userId = this.sessionService.getCurrentUser().userId;
+      this.roleId = this.sessionService.getCurrentUser().roleId;
+      // console.log(this.userId);
+      // console.log(this.roleId);
 
+      if(this.roleId == 1){
+        this._url = "http://localhost:8080/EmplReimb/admin";
+      }
+
+      if(this.roleId == 2){
+        this._url = "http://localhost:8080/EmplReimb/display/" + this.userId;
+      }
+    
+      this.httpService.get(this._url).subscribe(
+        data => {
+          this.userReimbs = data as string [];
+        }
+      );
+    }, 1500);
+  }
 }
