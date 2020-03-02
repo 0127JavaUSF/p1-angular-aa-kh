@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../classes/employee/employee';
-import { SessionService } from '../../services/employee/session.service';
+import { SessionService } from '../../services/session/session.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   employee = new Employee("", "");
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onLogin() {
     if(!this._sessionService.isLoggedIn()) {
