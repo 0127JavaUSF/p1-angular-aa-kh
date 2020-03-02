@@ -10,26 +10,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _employeeService: SessionService, private router: Router) { }
+  constructor(private _sessionService: SessionService, private router: Router) { }
 
   employee = new Employee("", "");
 
   ngOnInit(): void {}
 
   onLogin() {
-    if(!this._employeeService.isLoggedIn()) {
+    if(!this._sessionService.isLoggedIn()) {
       if(this.employee.password && this.employee.username){
-        this._employeeService.create(this.employee)
+        this._sessionService.create(this.employee)
           .subscribe(
             data => {
-              this._employeeService.setCurrentUser(data);
-              if (this._employeeService.getCurrentUser()) {
-                console.log("ID: " + this._employeeService.getCurrentUser().userId);
-                console.log(this._employeeService.getCurrentUser().username + " has logged in.");
-                console.log("Token assigned: " + this._employeeService.getCurrentUser().sessionToken);
-                console.log("Email: " + this._employeeService.getCurrentUser().email);
-                console.log("Username: " + this._employeeService.getCurrentUser().username);
-                console.log("FirstName: " + this._employeeService.getCurrentUser().firstName);
+              this._sessionService.setCurrentUser(data);
+              if (this._sessionService.getCurrentUser()) {
+                console.log("ID: " + this._sessionService.getCurrentUser().userId);
+                console.log(this._sessionService.getCurrentUser().username + " has logged in.");
+                console.log("Token assigned: " + this._sessionService.getCurrentUser().sessionToken);
+                console.log("Email: " + this._sessionService.getCurrentUser().email);
+                console.log("Username: " + this._sessionService.getCurrentUser().username);
+                console.log("FirstName: " + this._sessionService.getCurrentUser().firstName);
 
               }
               // this.location.replaceState('/home');
@@ -41,18 +41,18 @@ export class LoginComponent implements OnInit {
         console.log("Fill out both fields");
       }
     } else {
-      console.log(this._employeeService.getCurrentUser().username + " has logged in. Logout first!");
+      console.log(this._sessionService.getCurrentUser().username + " has logged in. Logout first!");
     }
   }
 
   onLogout() {
-    if(this._employeeService.isLoggedIn()) {
-      this._employeeService.logout()
+    if(this._sessionService.isLoggedIn()) {
+      this._sessionService.logout()
         .subscribe(
           () => {
-            console.log("Logging out " + this._employeeService.getCurrentUser().username);
-            console.log("Removed token: " + this._employeeService.getCurrentUser().sessionToken);
-            this._employeeService.setCurrentUser(false);
+            console.log("Logging out " + this._sessionService.getCurrentUser().username);
+            console.log("Removed token: " + this._sessionService.getCurrentUser().sessionToken);
+            this._sessionService.setCurrentUser(false);
           },
           error => console.log('******Error!', error)
         )
