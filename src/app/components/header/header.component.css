@@ -19,3 +19,8 @@ h1{
 .logoutFormContainer{
     margin-right: 15px;
 }
+
+p{
+    padding-top: 20px;
+    color: #fff;
+}

@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Update } from 'src/app/classes/reimb-update';
 import { UpdateService } from 'src/app/services/update/update.service';
-import { SessionService } from '../../services/session/session.service'
+import { SessionService } from '../../services/session/session.service';
 import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 
 @Component({
@@ -12,13 +12,12 @@ import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private hostElement: ElementRef, private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { }
+  constructor( private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { }
   
   userId: number;
   roleId: number;
 
   userReimbs;
-  //: string [];
   updateModel = new Update(0, 0, 1);
   _url;
 
@@ -31,8 +30,7 @@ export class TableComponent implements OnInit {
       // Solution: Use cookies that will store userId
       this.userId = this.sessionService.getCurrentUser().userId;
       this.roleId = this.sessionService.getCurrentUser().roleId;
-      // console.log(this.userId);
-      // console.log(this.roleId);
+
 
       if(this.roleId == 1){
         this._url = "http://localhost:8080/EmplReimb/admin";
@@ -44,9 +42,7 @@ export class TableComponent implements OnInit {
     
       this.httpService.get(this._url).subscribe(
         data => {
-          console.log(data);
           this.userReimbs = data; 
-          //as string [];
         }
       );
     }, 1500);
@@ -59,7 +55,7 @@ export class TableComponent implements OnInit {
       .subscribe(
         data => console.log('Success!', data),
         error => console.error('Error!', error)
-      )
-    // console.log(this.userReimbs[0].reimbID);
+      );
+    this.ngOnInit();
   }
 }
