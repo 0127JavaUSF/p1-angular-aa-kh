@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EmployeeService } from '../../services/employee/employee.service'
+import { Update } from 'src/app/classes/reimb-update';
+import { EmployeeService } from '../../services/employee/employee.service';
+import { UpdateService } from 'src/app/services/update/update.service';
 import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 
 @Component({
@@ -10,13 +12,13 @@ import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private httpService: HttpClient,private employeeService: EmployeeService) { }
+  constructor( private httpService: HttpClient,private employeeService: EmployeeService, private updateService: UpdateService) { }
   
   userId: number;
   roleId: number;
 
   userReimbs: string [];
-  
+  updateModel = new Update(0, this.employeeService.getCurrentUser().userId, 1);
   _url;
   
   ngOnInit(): void {
@@ -40,9 +42,14 @@ export class TableComponent implements OnInit {
         this.userReimbs = data as string [];
       }
     );
+  }
 
-    
-
+  onSubmit(){
+    this.updateService.update(this.updateModel)
+      .subscribe(
+        data => console.log('Success!', data),
+        error => console.log('Error!', error)
+      )
   }
 
 }

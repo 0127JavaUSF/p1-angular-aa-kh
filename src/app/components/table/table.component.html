@@ -28,7 +28,22 @@
         <td>{{ reimb.description }}</td>
         <td><button type="button" class="btn btn-primary btn-sm">View Reciept</button></td>
         <td *ngIf="roleId == 1 && reimb.statusID == 1">
-          <app-admin-form></app-admin-form>
+          <form #adminForm="ngForm" (ngSubmit)="onSubmit()">
+            <input style="display: none;" name="reimbID" class="form-control" type="text" value="{{ reimb.reimbID }}" readonly [(ngModel)]="updateModel.reimbID">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="statusID" id="approve" value="2" [(ngModel)]="updateModel.statusID" >
+              <label class="form-check-label" for="approve">
+                Approve
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="statusID" id="deny" value="3" [(ngModel)]="updateModel.statusID">
+              <label class="form-check-label" for="deny">
+                Deny
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+          </form>
         </td>
       </tr>
 
