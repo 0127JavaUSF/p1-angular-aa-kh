@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,14 @@ import { SessionService } from '../../services/session/session.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private _sessionService: SessionService,) { }
+  constructor(public _sessionService: SessionService, private router: Router) { }
 
   ngOnInit(): void {
+    this._sessionService.fetchCurrentUser();
   }
 
   onLogout() {
+
     if (this._sessionService.isLoggedIn()) {
       this._sessionService.logout()
         .subscribe(
@@ -21,6 +24,7 @@ export class HeaderComponent implements OnInit {
             console.log("Logging out " + this._sessionService.getCurrentUser().username);
             console.log("Removed token: " + this._sessionService.getCurrentUser().sessionToken);
             this._sessionService.setCurrentUser(false);
+            this.router.navigateByUrl('');
           },
           error => console.log('******Error!', error)
         )

@@ -12,6 +12,10 @@ import { SessionService } from 'src/app/services/session/session.service';
 export class AdminFormComponent {
 
   constructor(private sessionService: SessionService, private updateService: UpdateService){}
+ 
+  ngOnInit(): void {
+    this.sessionService.fetchCurrentUser();
+  }
 
   updateModel = new Update(0, this.sessionService.getCurrentUser().userId, 1);
 

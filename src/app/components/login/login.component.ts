@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   employee = new Employee("", "");
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onLogin() {
     if(!this._sessionService.isLoggedIn()) {

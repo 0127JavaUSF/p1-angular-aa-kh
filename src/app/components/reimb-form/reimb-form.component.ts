@@ -12,6 +12,9 @@ import { SessionService } from '../../services/session/session.service';
 export class ReimbFormComponent{
   
   constructor(private _createService: CreateService, private sessionService: SessionService){}
+  ngOnInit(): void {
+    this.sessionService.fetchCurrentUser();
+  }
 
   newReimbModel = new NewReimb(this.sessionService.getCurrentUser().userId, 0, 0, "", "")
 
