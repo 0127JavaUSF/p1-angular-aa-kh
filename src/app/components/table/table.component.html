@@ -22,7 +22,7 @@
         <th id="rID" scope="row">{{ reimb.reimbID }}</th>
         <td>{{ reimb.typeID | type }}</td>
         <td>{{ reimb.amount | currency }}</td>
-        <td class="status">{{ reimb.statusID | status }}</td>
+        <td>{{ reimb.statusID | status }}</td>
         <td>{{ reimb.submitted | date:'shortDate' }}</td>
         <td>{{ reimb.resolved | date:'shortDate' }}</td>
         <td>{{ reimb.description }}</td>
@@ -44,8 +44,6 @@
             <button type="submit" class="btn btn-primary btn-sm">Update</button>
           </form>
         </td>
-      </tr>
-
-      
+      </tr>    
     </tbody>
   </table>

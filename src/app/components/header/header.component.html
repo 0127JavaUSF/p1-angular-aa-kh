@@ -2,6 +2,9 @@
     
     <header>
         <h1>PayWaye.</h1>
+        <div class="welcome" *ngIf="this._sessionService.isLoggedIn()">
+            <p>Welcome, {{ this._sessionService.getCurrentUser().firstName}}!</p>
+        </div>
         <div class="logoutFormContainer" *ngIf="this._sessionService.isLoggedIn()">
             <form #reimbForm="ngForm" (ngSubmit)="onLogout()">
                 <button type="submit" class="btn btn-primary">Logout</button>
