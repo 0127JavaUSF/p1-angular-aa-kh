@@ -19,7 +19,7 @@
     
     <tbody>
       <tr *ngFor = "let reimb of userReimbs">
-        <th scope="row">{{ reimb.reimbID }}</th>
+        <th id="rID" scope="row">{{ reimb.reimbID }}</th>
         <td>{{ reimb.typeID | type }}</td>
         <td>{{ reimb.amount | currency }}</td>
         <td class="status">{{ reimb.statusID | status }}</td>
@@ -29,9 +29,9 @@
         <td><button type="button" class="btn btn-primary btn-sm">View Reciept</button></td>
         <td *ngIf="roleId == 1 && reimb.statusID == 1">
           <form #adminForm="ngForm" (ngSubmit)="onSubmit()">
-            <input style="display: none;" name="reimbID" class="form-control" type="text" value="{{ reimb.reimbID }}" readonly [(ngModel)]="updateModel.reimbID">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="statusID" id="approve" value="2" [(ngModel)]="updateModel.statusID" >
+            
+           <div class="form-check">  
+              <input class="form-check-input" type="radio" name="statusID" id="approve" value="2" [(ngModel)]="updateModel.statusID">     
               <label class="form-check-label" for="approve">
                 Approve
               </label>
@@ -42,6 +42,8 @@
                 Deny
               </label>
             </div>
+        
+
             <button type="submit" class="btn btn-primary btn-sm">Update</button>
           </form>
         </td>

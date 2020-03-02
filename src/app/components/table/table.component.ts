@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Update } from 'src/app/classes/reimb-update';
 import { UpdateService } from 'src/app/services/update/update.service';
-import { SessionService } from '../../services/employee/session.service'
-import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
+import { SessionService } from '../../services/employee/session.service';
 
 @Component({
   selector: 'app-table',
@@ -12,7 +11,9 @@ import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { }
+  constructor( private hostElement: ElementRef, private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { 
+    console.log("this is: " + this.hostElement.nativeElement.outerHTML);
+  }
   
   userId: number;
   roleId: number;
@@ -20,7 +21,9 @@ export class TableComponent implements OnInit {
   userReimbs: string [];
   updateModel = new Update(0, this.sessionService.getCurrentUser().userId, 1);
   _url;
-  
+
+ 
+
   ngOnInit(): void {
     // when refresh, you lose currentUser because it's a new instance of service class.
     // Solution: Use cookies that will store userId
@@ -43,13 +46,16 @@ export class TableComponent implements OnInit {
       }
     );
   }
-
+  
   onSubmit(){
     this.updateService.update(this.updateModel)
       .subscribe(
         data => console.log('Success!', data),
         error => console.log('Error!', error)
       )
+      console.log(this.updateModel);
+      console.log(this.userReimbs[0]);
+      // console.log(this.userReimbs[0].split(" ")[1]);
   }
 
 }
