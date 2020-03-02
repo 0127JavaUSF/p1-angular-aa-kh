@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from "../../classes/employee/employee";
-import { EmployeeI } from './employeeObj';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class SessionService {
 
-  public currentUser: EmployeeI = {
+  url = 'http://localhost:8080/EmplReimb/SessionServlet';
+
+  public currentUser = {
     userId: 0,
     username: "",
     firstName: "",
@@ -18,21 +19,10 @@ export class EmployeeService {
     sessionToken: "",
   }
   
-  _url = 'http://localhost:8080/EmplReimb/SessionServlet';
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getCurrentUser(): any {
     return this.currentUser;
-  }
-
-  resetCurrentUserFields() {
-    this.currentUser.userId = 0;
-    this.currentUser.username = "";
-    this.currentUser.firstName = "";
-    this.currentUser.lastName = "";
-    this.currentUser.email = "";
-    this.currentUser.roleId = 0;
-    this.currentUser.sessionToken = "";
   }
 
   setCurrentUser(user: any) {
@@ -49,6 +39,16 @@ export class EmployeeService {
     }
   }
 
+  resetCurrentUserFields() {
+    this.currentUser.userId = 0;
+    this.currentUser.username = "";
+    this.currentUser.firstName = "";
+    this.currentUser.lastName = "";
+    this.currentUser.email = "";
+    this.currentUser.roleId = 0;
+    this.currentUser.sessionToken = "";
+  }
+
   isLoggedIn(): boolean {
     if (this.getCurrentUser().username.length > 0) {
       return true;
@@ -57,22 +57,22 @@ export class EmployeeService {
     }
   }
 
+  // create session
   create(employee: Employee) {
-    console.log("I am service: " + employee.password);
-    return this._http.post<any>(this._url, {
+    // this Employee = LoginDetails
+    return this.http.post<any>(this.url, {
       username: employee.username,
       password: employee.password
     },
     {withCredentials: true},
-    // {withCredentials:true}
     );
-    //withLoginRequest
   }
 
+  // destroy session
   logout(): any {
     if (this.getCurrentUser) {
       console.log("Logging out the current user...");
-      return this._http.delete<any>(this._url, {});
+      return this.http.delete<any>(this.url, {});
     }
   }
 
