@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SessionService } from '../../services/employee/session.service'
+import { SessionService } from '../../services/session/session.service'
 import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NewReimb } from '../../classes/new-reimb';
 import { CreateService } from '../../services/create/create.service';
-import { SessionService } from '../../services/employee/session.service';
+import { SessionService } from '../../services/session/session.service';
 
 @Component({
   selector: 'app-reimb-form',

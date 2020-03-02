@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Update } from 'src/app/classes/reimb-update';
 import { UpdateService } from 'src/app/services/update/update.service';
-import { SessionService } from 'src/app/services/employee/session.service';
+import { SessionService } from 'src/app/services/session/session.service';
 
 @Component({
   selector: 'app-admin-form',
