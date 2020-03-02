@@ -1,13 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
 import { Update } from 'src/app/classes/reimb-update';
 import { UpdateService } from 'src/app/services/update/update.service';
-import { SessionService } from '../../services/employee/session.service';
-=======
 import { SessionService } from '../../services/session/session.service'
 import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
->>>>>>> 6ac46401d4b12f4ad2e5ed595be53564deb7232a
 
 @Component({
   selector: 'app-table',
@@ -16,18 +12,15 @@ import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private hostElement: ElementRef, private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { 
-    console.log("this is: " + this.hostElement.nativeElement.outerHTML);
-  }
+  constructor( private hostElement: ElementRef, private httpService: HttpClient,private sessionService: SessionService, private updateService: UpdateService) { }
   
   userId: number;
   roleId: number;
 
-  userReimbs: string [];
-  updateModel = new Update(0, this.sessionService.getCurrentUser().userId, 1);
+  userReimbs;
+  //: string [];
+  updateModel = new Update(0, 0, 1);
   _url;
-
- 
 
   ngOnInit(): void {
 
@@ -51,9 +44,22 @@ export class TableComponent implements OnInit {
     
       this.httpService.get(this._url).subscribe(
         data => {
-          this.userReimbs = data as string [];
+          console.log(data);
+          this.userReimbs = data; 
+          //as string [];
         }
       );
     }, 1500);
+  }
+
+  onSubmit(){
+    this.updateModel.reimbID = this.userReimbs[0].reimbID;
+    this.updateModel.resolver = this.sessionService.getCurrentUser().userId
+    this.updateService.update(this.updateModel)
+      .subscribe(
+        data => console.log('Success!', data),
+        error => console.error('Error!', error)
+      )
+    // console.log(this.userReimbs[0].reimbID);
   }
 }
