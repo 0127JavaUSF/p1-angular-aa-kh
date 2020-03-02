@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NewReimb } from '../../classes/new-reimb';
 import { CreateService } from '../../services/create/create.service';
-import { EmployeeService } from '../../services/employee/employee.service';
+import { SessionService } from '../../services/employee/session.service';
 
 @Component({
   selector: 'app-reimb-form',
@@ -11,9 +11,9 @@ import { EmployeeService } from '../../services/employee/employee.service';
 
 export class ReimbFormComponent{
   
-  constructor(private _createService: CreateService, private employeeService: EmployeeService){}
+  constructor(private _createService: CreateService, private sessionService: SessionService){}
 
-  newReimbModel = new NewReimb(this.employeeService.getCurrentUser().userId, 0, 0, "", "")
+  newReimbModel = new NewReimb(this.sessionService.getCurrentUser().userId, 0, 0, "", "")
 
   onSubmit(){
     this._createService.create(this.newReimbModel)

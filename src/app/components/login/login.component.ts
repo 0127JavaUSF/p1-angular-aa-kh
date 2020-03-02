@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../classes/employee/employee';
-import { EmployeeService } from '../../services/employee/employee.service';
-import { Location } from '@angular/common';
+import { SessionService } from '../../services/employee/session.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _employeeService: EmployeeService, private router: Router) { }
+  constructor(private _employeeService: SessionService, private router: Router) { }
 
   employee = new Employee("", "");
 

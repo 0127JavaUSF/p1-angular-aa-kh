@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EmployeeService } from '../../services/employee/employee.service'
+import { SessionService } from '../../services/employee/session.service'
 import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { ReimbFormComponent } from '../reimb-form/reimb-form.component';
 })
 export class TableComponent implements OnInit {
 
-  constructor( private httpService: HttpClient,private employeeService: EmployeeService) { }
+  constructor( private httpService: HttpClient,private sessionService: SessionService) { }
   
   userId: number;
   roleId: number;
@@ -22,8 +22,8 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     // when refresh, you lose currentUser because it's a new instance of service class.
     // Solution: Use cookies that will store userId
-    this.userId = this.employeeService.getCurrentUser().userId;
-    this.roleId = this.employeeService.getCurrentUser().roleId;
+    this.userId = this.sessionService.getCurrentUser().userId;
+    this.roleId = this.sessionService.getCurrentUser().roleId;
     console.log(this.userId);
     console.log(this.roleId);
 

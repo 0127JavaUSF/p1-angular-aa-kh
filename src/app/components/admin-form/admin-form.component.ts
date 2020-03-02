@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Update } from 'src/app/classes/reimb-update';
 import { UpdateService } from 'src/app/services/update/update.service';
-import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { SessionService } from 'src/app/services/employee/session.service';
 
 @Component({
   selector: 'app-admin-form',
@@ -11,9 +11,9 @@ import { EmployeeService } from 'src/app/services/employee/employee.service';
 
 export class AdminFormComponent {
 
-  constructor(private employeeService: EmployeeService, private updateService: UpdateService){}
+  constructor(private sessionService: SessionService, private updateService: UpdateService){}
 
-  updateModel = new Update(0, this.employeeService.getCurrentUser().userId, 1);
+  updateModel = new Update(0, this.sessionService.getCurrentUser().userId, 1);
 
   onSubmit(){
     this.updateService.update(this.updateModel)
